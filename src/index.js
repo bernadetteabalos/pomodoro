@@ -4,10 +4,20 @@ import './index.scss';
 import App from './App';
 import SettingsContextProvider from './context/SettingsContext';
 
+import * as themes from './theme/schema.json';
+import { setToLS } from './utils/storage';
+
+const Index = () => {
+  setToLS('all-themes', themes.default);
+  return (
+    <App />
+  )
+}
+
 
 ReactDOM.render(
   <SettingsContextProvider value={{}}>
-    <App />
+    <Index />
   </SettingsContextProvider>,
   document.getElementById('root')
 );
