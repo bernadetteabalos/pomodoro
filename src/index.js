@@ -6,9 +6,8 @@ import SettingsContextProvider from './context/SettingsContext';
 
 
 ReactDOM.render(
-  <SettingsContextProvider>
+  <SettingsContextProvider value={{}}>
     <App />
-
   </SettingsContextProvider>,
   document.getElementById('root')
 );

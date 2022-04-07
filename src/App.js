@@ -6,25 +6,27 @@ import { SettingsContext } from "./context/SettingsContext";
 
 function App() {
   const {
-    pomodoro, 
-    executing, 
-    setCurrentTimer, 
-    SettingBtn, 
-    children,
+    pomodoro,
+    executing,
     startAnimation,
+    children,
     startTimer,
     pauseTimer,
-    updateExecute
-  } = useContext(SettingsContext)
+    updateExecute,
+    setCurrentTimer,
+    SettingBtn } = useContext(SettingsContext)
 
   useEffect(() => {updateExecute(executing)}, [updateExecute, executing, startAnimation])
+
+  // function generateKey() {
+  //   return Math.floor(Math.random() * 100)
+  // }
 
   return (
     <div className="container">
       <h1>Pomodoro</h1>
       <small>Be productive the right way.</small>
         {pomodoro !== 0 ? 
-          
           <>
           <ul className="labels">
             <li>
@@ -65,8 +67,7 @@ function App() {
             <Button title="Start" className={!startAnimation ? 'active' : undefined} _callback={startTimer} />
             <Button title="Pause" className={startAnimation ? 'active' : undefined} _callback={pauseTimer} />
           </div>
-          </> : <SetPomodoro/> }
-        
+          </> : <SetPomodoro />}  
     </div>
   );
 }

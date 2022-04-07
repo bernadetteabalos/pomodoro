@@ -4,15 +4,16 @@ import Button from './Button'
 
 const SetPomodoro = () => {
 
-    const{updateExecute} = useContext(SettingsContext)
-
+    
     const [newTimer, setNewTimer] = useState({
         work: 25,
         short: 5,
         long: 15,
         active: 'work'
     })
-  
+    
+    const{updateExecute} = useContext(SettingsContext)
+    
     const handleChange = input => {
         const {name, value} = input.target
         switch (name) {
