@@ -4,11 +4,11 @@ import './index.scss';
 import App from './App';
 import SettingsContextProvider from './context/SettingsContext';
 
-// import themes from './theme/schema.json';
-// import { setToLS } from './utils/storage';
+import themes from './theme/schema.json';
+import { setToLS } from './utils/storage';
 
 const Index = () => {
-  // setToLS('all-themes', themes);
+  setToLS('all-themes', themes);
   return (
     <App />
   )

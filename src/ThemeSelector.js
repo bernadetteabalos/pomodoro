@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import _ from 'lodash';
 import { useTheme } from './theme/useTheme';
-// import { getFromLS } from './utils/storage';
+import { getFromLS } from './utils/storage';
 import themesFromStore from './theme/schema.json';
 
 const ThemedButton = styled.button`
@@ -39,6 +39,7 @@ const Header = styled.h2`
 `;
 
 const ThemeSelector = (props) => {
+    const themesFromStore = getFromLS('all-themes');
     const [data, setData] = useState(themesFromStore.data);
     const [themes, setThemes] = useState([]);
     const { setMode } = useTheme();
