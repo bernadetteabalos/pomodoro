@@ -3,6 +3,7 @@ import styled from "styled-components";
 import _ from 'lodash';
 import { useTheme } from './theme/useTheme';
 import { getFromLS } from './utils/storage';
+import themesFromStore from './theme/schema.json';
 
 const ThemedButton = styled.button`
     border: 0;
@@ -19,12 +20,12 @@ const Wrapper = styled.li`
     padding: 48px;
     text-align: center;
     border-radius: 4px;
-    border: 1px solid #000;
+    border: 0;
     list-style: none;
 `;
 
 const Container = styled.ul`
-    display: grid;
+    display: flex;
     gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
     margin-top: 3rem;
@@ -33,11 +34,11 @@ const Container = styled.ul`
 
 const Header = styled.h2`
     display: flex;
+    align-items: center;
     justify-content: space-around;
 `;
 
 const ThemeSelector = (props) => {
-    const themesFromStore = getFromLS('all-themes');
     const [data, setData] = useState(themesFromStore.data);
     const [themes, setThemes] = useState([]);
     const { setMode } = useTheme();
@@ -66,7 +67,7 @@ const ThemeSelector = (props) => {
     const ThemeCard = props => {
         return (
             <Wrapper style={{
-                backgroundColor: `${data[_.camelCase(props.theme.name)].colors.body}`,
+                backgroundColor: `${data[_.camelCase(props.theme.name)].colors.background}`,
                 color: `${data[_.camelCase(props.theme.name)].colors.text}`,
                 fontFamily: `${data[_.camelCase(props.theme.name)].font}`
             }}>

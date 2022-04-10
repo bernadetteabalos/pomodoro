@@ -9,6 +9,61 @@ import { GlobalStyles } from './theme/GlobalStyles';
 import { useTheme } from './theme/useTheme';
 import ThemeSelector from './ThemeSelector';
 
+const Container = styled.div`
+  color:${({ theme }) => theme.colors.text};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: ${({ theme }) => theme.colors.background};
+  font-family: ${({ theme }) => theme.font};
+`
+
+const Label = styled.ul`
+list-style: none;
+  display: flex;
+  text-transform: uppercase;
+  font-size: .8rem;
+  padding:.3rem .3rem;
+  background-color: ${({ theme }) => theme.colors.background};
+  border-radius: 1.5rem;
+`
+
+const TimeContainer = styled.div`
+  display: flex;
+  padding: 5em;
+  align-items: center;
+  justify-content: center;
+`
+
+const TimeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+  width: 15rem;
+  border-radius: 7.5rem;
+  color:#efefef;
+  background: ${({ theme }) => theme.colors.accent};
+  font-size: 3.5rem;
+  box-shadow: 1rem 1.5rem 2rem rgba(0,0,0,0.6);
+`
+
+export const Input = styled.input`
+  height: 30px;
+  width: 30px;
+  padding: 2rem;
+  background: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.secondary};
+  border: none;
+  border-radius: 50%;
+  margin-right: 0.3rem;
+  text-align: center;
+  font-size: 14pt;
+
+`
+
 function App() {
   const {
     pomodoro,
@@ -41,64 +96,69 @@ function App() {
   // function generateKey() {
   //   return Math.floor(Math.random() * 100)
   // }
+  // console.log(selectedTheme);
 
   return (
-    <div className="container">
+    <>
       {themeLoaded && <ThemeProvider theme={selectedTheme}>
         <GlobalStyles />
-        <div style={{ fontFamily: selectedTheme.font }}>
-          <h1>Pomodoro</h1>
-          <small>Be productive the right way.</small>
+        <Container >
+          <h1>pomodoro {selectedTheme.emoji}</h1>
+          <small>let's be productive today!</small>
           {pomodoro !== 0 ?
             <>
-              <ul className="labels">
+              <Label>
                 <li>
                   <Button
                     title="Work"
-                    activeClass={executing.active === 'work' ? 'active-label' : undefined}
-                    _callback={() => setCurrentTimer('work')}
+                    active={executing.active === 'work'}
+                    onClick={() => setCurrentTimer('work')}
                   />
                 </li>
                 <li>
                   <Button
                     title="Short Break"
-                    activeClass={executing.active === 'short' ? 'active-label' : undefined}
-                    _callback={() => setCurrentTimer('short')}
+                    active={executing.active === 'short'}
+                    onClick={() => setCurrentTimer('short')}
                   />
                 </li>
                 <li>
                   <Button
                     title="Long Break"
-                    activeClass={executing.active === 'long' ? 'active-label' : undefined}
-                    _callback={() => setCurrentTimer('long')}
+                    active={executing.active === 'long'}
+                    onClick={() => setCurrentTimer('long')}
                   />
                 </li>
-              </ul>
-              <Button title="Settings" _callback={SettingBtn} />
-              <div className="timer-container">
-                <div className="time-wrapper">
+              </Label>
+              <div className="button-wrapper">
+                <Button title="Settings" onClick={SettingBtn} />
+              </div>
+              <TimeContainer>
+                <TimeWrapper>
                   <CountdownAnimation
                     key={pomodoro}
                     timer={pomodoro}
                     animate={startAnimation}
+                    colors={selectedTheme.colors.secondary}
+                    trailColor={selectedTheme.colors.trail}
                   >
                     {children}
                   </CountdownAnimation>
-                </div>
-              </div>
+                </TimeWrapper>
+              </TimeContainer>
               <div className="button-wrapper">
-                <Button title="Start" className={!startAnimation ? 'active' : undefined} _callback={startTimer} />
-                <Button title="Pause" className={startAnimation ? 'active' : undefined} _callback={pauseTimer} />
+                <Button title="Start" className={!startAnimation ? 'active' : undefined} onClick={startTimer} />
+                <Button title="Pause" className={startAnimation ? 'active' : undefined} onClick={pauseTimer} />
               </div>
             </> : <><SetPomodoro />
               <ThemeSelector setter={setSelectedTheme} />
             </>}
 
-        </div>
+        </Container>
       </ThemeProvider>
 
       }
-    </div>
+    </>
   );
 }
 

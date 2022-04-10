@@ -60,11 +60,16 @@ const SettingsContextProvider = (props) => {
   const children = ({ remainingTime }) => {
     const minutes = Math.floor(remainingTime / 60)
     let seconds = remainingTime % 60
+    if (minutes === 0) {
+      return `${seconds}`
+    }
     if (seconds === 0) {
       seconds = remainingTime % 60 + "0"
     }
 
     return `${minutes}:${seconds}`
+
+    
   }
 
   return (

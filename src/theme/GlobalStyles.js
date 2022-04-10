@@ -12,22 +12,24 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.link.text};
     cursor: pointer;
   }
-
+/* 
   button {
-    border: 0;
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 14px;
-    border-radius: 4px;
-    margin-top: 5px;
-    cursor: pointer;
-    background-color: #1064EA;
-    color: #FFFFFF;
+  color:#efefef;
+  font-size:0.8rem;
+  padding: 0.5rem 1.2rem;
+  border:none;
+  border-radius:3rem;
+  margin:0.2rem;;
+  background:#0C0E1B;
+  min-width: 80px;
     font-family: ${({ theme }) => theme.font};
+    .active-label {
+      background-color: red;
+    }
   }
 
   button.btn {
     background-color: ${({ theme }) => theme.colors.button.background};
     color: ${({ theme }) => theme.colors.button.text};
-  }
+  } */
 `;
