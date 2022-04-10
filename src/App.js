@@ -136,7 +136,7 @@ function App() {
               <TimeContainer>
                 <TimeWrapper>
                   <CountdownAnimation
-                    key={pomodoro}
+                    id={pomodoro}
                     timer={pomodoro}
                     animate={startAnimation}
                     colors={selectedTheme.colors.secondary}
