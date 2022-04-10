@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import _ from 'lodash';
 import { useTheme } from './theme/useTheme';
-import { getFromLS } from './utils/storage';
+// import { getFromLS } from './utils/storage';
 import themesFromStore from './theme/schema.json';
 
 const ThemedButton = styled.button`
@@ -54,15 +54,15 @@ const ThemeSelector = (props) => {
     }, [data]);
 
     useEffect(() => {
+        const updateThemeCard = theme => {
+            const key = _.keys(theme)[0];
+            const updated = { ...data, [key]: theme[key] };
+            setData(updated);
+        }
         props.newTheme &&
             updateThemeCard(props.newTheme);
-    }, [props.newTheme])
+    }, [props.newTheme, data])
 
-    const updateThemeCard = theme => {
-        const key = _.keys(theme)[0];
-        const updated = { ...data, [key]: theme[key] };
-        setData(updated);
-    }
 
     const ThemeCard = props => {
         return (

@@ -81,7 +81,7 @@ function App() {
 
   useEffect(() => {
     setSelectedTheme(theme);
-  }, [themeLoaded]);
+  }, [themeLoaded, theme]);
 
   useEffect(() => {
     WebFont.load({
