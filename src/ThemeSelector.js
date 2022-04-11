@@ -28,15 +28,26 @@ const Container = styled.ul`
     display: flex;
     gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
-    margin-top: 3rem;
+    margin-top: 1rem;
     padding: 10px;
 `;
 
 const Header = styled.h2`
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    margin-top: 3.5rem;
 `;
+
+const Divider = styled.hr`
+    display: flex;
+    align-items: center;
+    background-color: ${({ theme }) => theme.colors.text};
+    border: 0;
+    height: 1px;
+    margin-top: 4em;
+  
+`
 
 const ThemeSelector = (props) => {
     const themesFromStore = getFromLS('all-themes');
@@ -87,7 +98,8 @@ const ThemeSelector = (props) => {
 
     return (
         <div>
-            <Header>Select a Theme from below</Header>
+            <Divider />
+            <Header>theme selection</Header>
             <Container>
                 {
                     themes.length > 0 &&

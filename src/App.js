@@ -8,6 +8,8 @@ import WebFont from 'webfontloader';
 import { GlobalStyles } from './theme/GlobalStyles';
 import { useTheme } from './theme/useTheme';
 import ThemeSelector from './ThemeSelector';
+import konkon from './img/koncrop.png';
+import meimei from './img/meicrop.png';
 
 const Container = styled.div`
   color:${({ theme }) => theme.colors.text};
@@ -20,14 +22,33 @@ const Container = styled.div`
   font-family: ${({ theme }) => theme.font};
 `
 
+const Chara = styled.img`
+  right: 0;
+  bottom: 0;
+  max-width: 24%;
+  position: absolute;
+  pointer-events: none;
+  
+`
+
 const Label = styled.ul`
-list-style: none;
+  list-style: none;
   display: flex;
+  align-items: center;
+  justify-content: center;
   text-transform: uppercase;
   font-size: .8rem;
-  padding:.3rem .3rem;
+  padding-left: 1em;
+  padding-top: 2em;
   background-color: ${({ theme }) => theme.colors.background};
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
+`
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0px;
 `
 
 const TimeContainer = styled.div`
@@ -103,6 +124,7 @@ function App() {
       {themeLoaded && <ThemeProvider theme={selectedTheme}>
         <GlobalStyles />
         <Container >
+        <Chara src={selectedTheme.img === "konkon" ? konkon : meimei}/>
           <h1>pomodoro {selectedTheme.emoji}</h1>
           <small>let's be productive today!</small>
           {pomodoro !== 0 ?
@@ -130,9 +152,9 @@ function App() {
                   />
                 </li>
               </Label>
-              <div className="button-wrapper">
+              <ButtonWrapper>
                 <Button title="Settings" onClick={SettingBtn} />
-              </div>
+              </ButtonWrapper>
               <TimeContainer>
                 <TimeWrapper>
                   <CountdownAnimation
@@ -146,10 +168,10 @@ function App() {
                   </CountdownAnimation>
                 </TimeWrapper>
               </TimeContainer>
-              <div className="button-wrapper">
+              <ButtonWrapper>
                 <Button title="Start" className={!startAnimation ? 'active' : undefined} onClick={startTimer} />
                 <Button title="Pause" className={startAnimation ? 'active' : undefined} onClick={pauseTimer} />
-              </div>
+              </ButtonWrapper>
             </> : <><SetPomodoro />
               <ThemeSelector setter={setSelectedTheme} />
             </>}

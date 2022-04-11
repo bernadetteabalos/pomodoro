@@ -4,6 +4,7 @@
         "id": "T_001",
         "name": "kon",
         "emoji": "🐢",
+        "img": "konkon",
         "colors": {
           "body": "#FFFFFF",
           "text": "#e9e3c0",
@@ -32,6 +33,7 @@
         "id": "T_007",
         "name": "memoi",
         "emoji": "🌙",
+        "img": "meimei",
         "colors": {
           "body": "#9be7ff",
           "text": "#4D4662",
