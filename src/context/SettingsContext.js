@@ -66,6 +66,9 @@ const SettingsContextProvider = (props) => {
     if (seconds === 0) {
       seconds = remainingTime % 60 + "0"
     }
+    if (minutes >= 1 && seconds < 10 && seconds > 0 ) {
+      return `${minutes}:0${seconds}`
+    }
 
     return `${minutes}:${seconds}`
 
